@@ -3,10 +3,10 @@ const mysql = require('mysql2')
 
 // สร้างการเชื่อมต่อกับ HOSxP
 const connection = mysql.createConnection({
-  host: '127.0.0.1',
+  host: '192.168.8.1',
   user: 'dragonit',
   password: 'pswh11112',       // ← ใส่รหัสผ่านของ MySQL ถ้ามี
-  database: 'his'     // ← เปลี่ยนตามชื่อฐาน HOSxP ของคุณ
+  database: 'hos'     // ← เปลี่ยนตามชื่อฐาน HOSxP ของคุณ
 })
 
 // ทดสอบการเชื่อมต่อทันที
