@@ -6,7 +6,9 @@ const connection = mysql.createConnection({
   host: '192.168.8.1',
   user: 'dragonit',
   password: 'pswh11112',       // ← ใส่รหัสผ่านของ MySQL ถ้ามี
-  database: 'hos'     // ← เปลี่ยนตามชื่อฐาน HOSxP ของคุณ
+  database: 'hos',    // ← เปลี่ยนตามชื่อฐาน HOSxP ของคุณ
+  port: 3306,
+  charset: 'utf8' // ✅ เพิ่มตรงนี้
 })
 
 // ทดสอบการเชื่อมต่อทันที
