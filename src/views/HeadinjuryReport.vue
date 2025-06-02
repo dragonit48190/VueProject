@@ -85,7 +85,7 @@ import API_ROUTES from '@/constants/apiRoutes';
 dayjs.locale('th')
 
 export default {
-  name: 'SeverehiReport',
+  name: 'HeadinjuryReport',
   components: {
     MainLayout,
     flatPickr: FlatPickr,
@@ -140,7 +140,7 @@ export default {
       try {
         this.isLoading = true;
         // ใช้ constants แทนการเขียน string โดยตรง
-        const res = await api.get(API_ROUTES.SEVERE_HI, {
+        const res = await api.get(API_ROUTES.HEADINJURY, {
           params: { date1: d1, date2: d2 }
         });
         
@@ -235,12 +235,12 @@ export default {
     
     // สร้าง Workbook
     const wb = XLSX.utils.book_new();
-    XLSX.utils.book_append_sheet(wb, ws, 'Severehi');
+    XLSX.utils.book_append_sheet(wb, ws, 'Headinjury');
     
     // สร้างชื่อไฟล์
     const d1 = this.dateRaw1 ? dayjs(this.dateRaw1).format('YYYYMMDD') : '';
     const d2 = this.dateRaw2 ? dayjs(this.dateRaw2).format('YYYYMMDD') : '';
-    const fileName = `SEVEREHI_${d1}_to_${d2}.xlsx`;
+    const fileName = `HEADINJURY_${d1}_to_${d2}.xlsx`;
     
     // ดาวน์โหลดไฟล์
     XLSX.writeFile(wb, fileName);

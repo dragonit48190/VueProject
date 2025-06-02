@@ -118,9 +118,16 @@
             </router-link>
         </li>
 		<li>
-            <router-link to="/report/serverehi" custom v-slot="{ navigate, href }">
+            <router-link to="/report/headinjury" custom v-slot="{ navigate, href }">
                 <a @click="navigate" :href="href">
                     <i class="bx bx-arrow-to-right"></i> Head Injury Severe
+                </a>
+            </router-link>
+        </li>
+		<li>
+            <router-link to="/report/ipddeath" custom v-slot="{ navigate, href }">
+                <a @click="navigate" :href="href">
+                    <i class="bx bx-arrow-to-right"></i> รายงานเสียชีวิต IPD
                 </a>
             </router-link>
         </li>
@@ -133,35 +140,97 @@
 						<div class="menu-title">รายงาน NCDs </div>
 					</a>
 					<ul>
-						<li> <a href="pdxnull.php"><i class="bx bx-arrow-to-right"></i>ยังไม่มีวินิจฉัย</a>
+						<li> 
+							<router-link to="/report/ncdpdxnull" custom v-slot="{ navigate, href }">
+								<a @click="navigate" :href="href">
+									<i class="bx bx-arrow-to-right"></i> แผนก NCD Pdx ว่าง 
+								</a>
+							</router-link>
 						</li>
-						<li> <a href="regis_dm.php"><i class="bx bx-arrow-to-right"></i>ลงทะเบียน DM</a>
+						<li> 
+							<router-link to="/report/clinicdm" custom v-slot="{ navigate, href }">
+								<a @click="navigate" :href="href">
+									<i class="bx bx-arrow-to-right"></i> ทะเบียน DM 
+								</a>
+							</router-link>
 						</li>
-						<li> <a href="regis_ht.php"><i class="bx bx-arrow-to-right"></i>ลงทะเบียน HT</a>
+						<li> 
+							<router-link to="/report/clinicht" custom v-slot="{ navigate, href }">
+								<a @click="navigate" :href="href">
+									<i class="bx bx-arrow-to-right"></i> ทะเบียน HT
+								</a>
+							</router-link>
 						</li>
-						<li> <a href="regis_ckd.php"><i class="bx bx-arrow-to-right"></i>ลงทะเบียน CKD </a>
+						<li> 
+							<router-link to="/report/clinicckd" custom v-slot="{ navigate, href }">
+								<a @click="navigate" :href="href">
+									<i class="bx bx-arrow-to-right"></i> ทะเบียน CKD
+								</a>
+							</router-link>
 						</li>
-						<li> <a href="regis_asthma.php"><i class="bx bx-arrow-to-right"></i>ลงทะเบียน Asthma</a>
+						<li> 
+							<router-link to="/report/cliniccopd" custom v-slot="{ navigate, href }">
+								<a @click="navigate" :href="href">
+									<i class="bx bx-arrow-to-right"></i> ทะเบียน COPD 
+								</a>
+							</router-link>
 						</li>
-						<li> <a href="regis_copd.php"><i class="bx bx-arrow-to-right"></i>ลงทะเบียน COPD</a>
+						<li> 
+							<router-link to="/report/clinicasthma" custom v-slot="{ navigate, href }">
+								<a @click="navigate" :href="href">
+									<i class="bx bx-arrow-to-right"></i> ทะเบียน ASTHMA
+								</a>
+							</router-link>
 						</li>
-						<li> <a href="new_dm.php"><i class="bx bx-arrow-to-right"></i>วินิจฉัย DM รายใหม่</a>
+						<li> 
+							<router-link to="/report/newdm" custom v-slot="{ navigate, href }">
+								<a @click="navigate" :href="href">
+									<i class="bx bx-arrow-to-right"></i> DM รายใหม่
+								</a>
+							</router-link>
 						</li>
-						<li> <a href="new_ht.php"><i class="bx bx-arrow-to-right"></i>วินิจฉัย HT รายใหม่</a>
+						<li> 
+							<router-link to="/report/newht" custom v-slot="{ navigate, href }">
+								<a @click="navigate" :href="href">
+									<i class="bx bx-arrow-to-right"></i> HT รายใหม่
+								</a>
+							</router-link>
 						</li>
-						<li> <a href="new_copd.php"><i class="bx bx-arrow-to-right"></i>วินิจฉัย COPD รายใหม่</a>
+						<li> 
+							<router-link to="/report/newckd" custom v-slot="{ navigate, href }">
+								<a @click="navigate" :href="href">
+									<i class="bx bx-arrow-to-right"></i> CKD รายใหม่
+								</a>
+							</router-link>
 						</li>
-						<li> <a href="new_asthma.php"><i class="bx bx-arrow-to-right"></i>วินิจฉัย Asthma รายใหม่</a>
+						<li> 
+							<router-link to="/report/newcopd" custom v-slot="{ navigate, href }">
+								<a @click="navigate" :href="href">
+									<i class="bx bx-arrow-to-right"></i> COPD รายใหม่
+								</a>
+							</router-link>
 						</li>
-						<li> <a href="influ.php"><i class="bx bx-arrow-to-right"></i>ฉีดวัคซีน Influenza </a>
+						<li> 
+							<router-link to="/report/newasthma" custom v-slot="{ navigate, href }">
+								<a @click="navigate" :href="href">
+									<i class="bx bx-arrow-to-right"></i> Asthma รายใหม่
+								</a>
+							</router-link>
 						</li>
-						<li> <a href="nulllot.php"><i class="bx bx-arrow-to-right"></i>ไม่ลง Lot Influenza</a>
+						<li> 
+							<router-link to="/report/influlotnull" custom v-slot="{ navigate, href }">
+								<a @click="navigate" :href="href">
+									<i class="bx bx-arrow-to-right"></i> ฉีด Vaccine Influenza
+								</a>
+							</router-link>
+						
 						</li>
-						<li> <a href="eyedm.php"><i class="bx bx-arrow-to-right"></i>คัดกรองตา DM</a>
-						</li>
-						<li> <a href="footdm.php"><i class="bx bx-arrow-to-right"></i>คัดกรองเท้า DM</a>
-						</li>
-						<li> <a href="hba1c.php"><i class="bx bx-arrow-to-right"></i> HbA1C 90 วัน</a>
+						<li> 
+							<router-link to="/report/dmscreeneye" custom v-slot="{ navigate, href }">
+								<a @click="navigate" :href="href">
+									<i class="bx bx-arrow-to-right"></i> คัดกรองตา DM
+								</a>
+							</router-link>
 						</li>
 					</ul>
 				</li>
@@ -172,15 +241,82 @@
 						<div class="menu-title">รายงาน PCU </div>
 					</a>
 					<ul>
-						<li> <a href="newborn.php"><i class="bx bx-arrow-to-right"></i>ทะเบียนเด็กอายุ 0-5 ปี</a>
+						<li> 
+							<router-link to="/report/childen" custom v-slot="{ navigate, href }">
+								<a @click="navigate" :href="href">
+									<i class="bx bx-arrow-to-right"></i> ทะเบียนกลุ่มอายุ 0-5 ปี
+								</a>
+							</router-link>
 						</li>
-						<li> <a href="child.php"><i class="bx bx-arrow-to-right"></i>ทะเบียนเด็กอายุ 6-14 ปี</a>
+						<li> 
+							<router-link to="/report/student" custom v-slot="{ navigate, href }">
+								<a @click="navigate" :href="href">
+									<i class="bx bx-arrow-to-right"></i> ทะเบียนกลุ่มอายุ 6-14 ปี
+								</a>
+							</router-link>
 						</li>
-						<li> <a href="teen.php"><i class="bx bx-arrow-to-right"></i>ทะเบียนอายุ 15-21 ปี</a>
+						<li> 
+							<router-link to="/report/teenager" custom v-slot="{ navigate, href }">
+								<a @click="navigate" :href="href">
+									<i class="bx bx-arrow-to-right"></i> ทะเบียนกลุ่มอายุ 15-21 ปี
+								</a>
+							</router-link>
 						</li>
-						<li> <a href="adult.php"><i class="bx bx-arrow-to-right"></i>ทะเบียนอายุ 22-59 ปี</a>
+						<li> 
+							<router-link to="/report/workage" custom v-slot="{ navigate, href }">
+								<a @click="navigate" :href="href">
+									<i class="bx bx-arrow-to-right"></i> ทะเบียนกลุ่มอายุ 22-59 ปี
+								</a>
+							</router-link>
 						</li>
-						<li> <a href="elderly.php"><i class="bx bx-arrow-to-right"></i>ทะเบียนอายุ 60 ปี</a>
+						<li>
+							<router-link to="/report/elderly" custom v-slot="{ navigate, href }">
+								<a @click="navigate" :href="href">
+									<i class="bx bx-arrow-to-right"></i> ทะเบียนผู้สูงอายุ
+								</a>
+							</router-link>
+						</li>
+						<li>
+							<router-link to="/report/screenpcu" custom v-slot="{ navigate, href }">
+								<a @click="navigate" :href="href">
+									<i class="bx bx-arrow-to-right"></i> คักกรอง 30 - 70 ปี
+								</a>
+							</router-link>
+						</li>
+						<li>
+							<router-link to="/report/screens" custom v-slot="{ navigate, href }">
+								<a @click="navigate" :href="href">
+									<i class="bx bx-arrow-to-right"></i> คักกรอง 35 ปี ขึ้นไป
+								</a>
+							</router-link>
+						</li>
+						<li>
+							<router-link to="/report/rapid" custom v-slot="{ navigate, href }">
+								<a @click="navigate" :href="href">
+									<i class="bx bx-arrow-to-right"></i> ตรวจ Rapid Covid-19
+								</a>
+							</router-link>
+						</li>
+						<li>
+							<router-link to="/report/rtpcr" custom v-slot="{ navigate, href }">
+								<a @click="navigate" :href="href">
+									<i class="bx bx-arrow-to-right"></i> ตรวจ RTPCR Covid-19
+								</a>
+							</router-link>
+						</li>
+						<li>
+							<router-link to="/report/denguefever" custom v-slot="{ navigate, href }">
+								<a @click="navigate" :href="href">
+									<i class="bx bx-arrow-to-right"></i> ไข้เลือดออก รวม
+								</a>
+							</router-link>
+						</li>
+						<li>
+							<router-link to="/report/dengue" custom v-slot="{ navigate, href }">
+								<a @click="navigate" :href="href">
+									<i class="bx bx-arrow-to-right"></i> ไข้เลือดออก ต.โพนสวรรค์
+								</a>
+							</router-link>
 						</li>
 					</ul>
 				</li>
@@ -191,19 +327,61 @@
 						<div class="menu-title">รายงาน ER </div>
 					</a>
 					<ul>
-						<li> <a href="pdxnuller.php"><i class="bx bx-arrow-to-right"></i>ยังไม่มีวินิจฉัย</a>
+						<li> 
+							<router-link to="/report/pdxnuller" custom v-slot="{ navigate, href }">
+								<a @click="navigate" :href="href">
+									<i class="bx bx-arrow-to-right"></i> ไม่มีวินิจฉัย Pdx ว่าง
+								</a>
+							</router-link>
 						</li>
-						<li> <a href="headin.php"><i class="bx bx-arrow-to-right"></i>Head Injury ER</a>
+						<li> 
+							<router-link to="/report/asthmaer" custom v-slot="{ navigate, href }">
+								<a @click="navigate" :href="href">
+									<i class="bx bx-arrow-to-right"></i> วินิจฉัย Asthma
+								</a>
+							</router-link>
 						</li>
-						<li> <a href="emergency.php"><i class="bx bx-arrow-to-right"></i>อุบัติเหตุจราจร </a>
+						<li> 
+							<router-link to="/report/emergencyer" custom v-slot="{ navigate, href }">
+								<a @click="navigate" :href="href">
+									<i class="bx bx-arrow-to-right"></i> อุบัติเหตุจราจร 
+								</a>
+							</router-link>
 						</li>
-						<li> <a href="tube.php"><i class="bx bx-arrow-to-right"></i>ใส่ ET Tube </a>
+						<li> 
+							<router-link to="/report/ettubeer" custom v-slot="{ navigate, href }">
+								<a @click="navigate" :href="href">
+									<i class="bx bx-arrow-to-right"></i> ใส่ ET Tube ER
+								</a>
+							</router-link>
 						</li>
-						<li> <a href="tube.php"><i class="bx bx-arrow-to-right"></i>หัตถการ CPR </a>
+						<li>
+							<router-link to="/report/cprer" custom v-slot="{ navigate, href }">
+								<a @click="navigate" :href="href">
+									<i class="bx bx-arrow-to-right"></i> หัตถการ CPR 
+								</a>
+							</router-link> 
 						</li>
-						<li> <a href="tube.php"><i class="bx bx-arrow-to-right"></i>หัตถการ เข้าเฝือก </a>
+						<li>
+							<router-link to="/report/castoperer" custom v-slot="{ navigate, href }">
+								<a @click="navigate" :href="href">
+									<i class="bx bx-arrow-to-right"></i> หัตถการ เข้าเฝือก
+								</a>
+							</router-link>  
 						</li>
-						<li> <a href="tube.php"><i class="bx bx-arrow-to-right"></i>หัตถการ ฉีดยา ER </a>
+						<li>
+							<router-link to="/report/defiber" custom v-slot="{ navigate, href }">
+								<a @click="navigate" :href="href">
+									<i class="bx bx-arrow-to-right"></i> Defibrillation ER
+								</a>
+							</router-link> 
+						</li>
+						<li>
+							<router-link to="/report/nber" custom v-slot="{ navigate, href }">
+								<a @click="navigate" :href="href">
+									<i class="bx bx-arrow-to-right"></i> หัตถการพ่นยา ER
+								</a>
+							</router-link> 
 						</li>
 					</ul>
 				</li>
@@ -214,23 +392,68 @@
 						<div class="menu-title">รายงาน IPD </div>
 					</a>
 					<ul>
-						<li> <a href="topipd.php"><i class="bx bx-arrow-to-right"></i>10 อันดับโรค IPD</a>
+						<li>
+							<router-link to="/report/admit2hour" custom v-slot="{ navigate, href }">
+								<a @click="navigate" :href="href">
+									<i class="bx bx-arrow-to-right"></i> Admit 2 hour
+								</a>
+							</router-link>  
 						</li>
-						<li> <a href="admit.php"><i class="bx bx-arrow-to-right"></i> จำนวน Admit รวม</a>
+						<li> 
+							<router-link to="/report/admitipd" custom v-slot="{ navigate, href }">
+								<a @click="navigate" :href="href">
+									<i class="bx bx-arrow-to-right"></i> จำนวน Admit รวม
+								</a>
+							</router-link>  
 						</li>
-						<li> <a href="readmit.php"><i class="bx bx-arrow-to-right"></i>Re-Admit รวม</a>
+						<li>
+							<router-link to="/report/readmit" custom v-slot="{ navigate, href }">
+								<a @click="navigate" :href="href">
+									<i class="bx bx-arrow-to-right"></i>Re-Admit รวม
+								</a>
+							</router-link>
 						</li>
-						<li> <a href="readmitold.php"><i class="bx bx-arrow-to-right"></i>Re-Admit-โรคเดิม </a>
+						<li>
+							<router-link to="/report/readmitold" custom v-slot="{ navigate, href }">
+								<a @click="navigate" :href="href">
+									<i class="bx bx-arrow-to-right"></i>Re-Admit ด้วยโรคเดิม
+								</a>
+							</router-link>
 						</li>
-						<li> <a href="admitdm.php"><i class="bx bx-arrow-to-right"></i>Admit DM </a>
+						<li> 
+							<router-link to="/report/admitdm" custom v-slot="{ navigate, href }">
+								<a @click="navigate" :href="href">
+									<i class="bx bx-arrow-to-right"></i> Admit DM
+								</a>
+							</router-link>
 						</li>
-						<li> <a href="readmitdm.php"><i class="bx bx-arrow-to-right"></i>Re-Admit DM </a>
+						<li>
+							<router-link to="/report/readmitdm" custom v-slot="{ navigate, href }">
+								<a @click="navigate" :href="href">
+									<i class="bx bx-arrow-to-right"></i> Re-Admit DM
+								</a>
+							</router-link> 
 						</li>
-						<li> <a href="admitdmhypo.php"><i class="bx bx-arrow-to-right"></i>Admit DM + Hypogly</a>
+						<li>
+							<router-link to="/report/admitdmhypo" custom v-slot="{ navigate, href }">
+								<a @click="navigate" :href="href">
+									<i class="bx bx-arrow-to-right"></i> AdmitDM + Hypogly
+								</a>
+							</router-link> 
 						</li>
-						<li> <a href="admitdmhyper.php"><i class="bx bx-arrow-to-right"></i>Admit DM + Hypergly</a>
+						<li> 
+							<router-link to="/report/admitdmhyper" custom v-slot="{ navigate, href }">
+								<a @click="navigate" :href="href">
+									<i class="bx bx-arrow-to-right"></i> AdmitDM + Hypergly
+								</a>
+							</router-link> 
 						</li>
-						<li> <a href="admitdhf.php"><i class="bx bx-arrow-to-right"></i>Admit DHF </a>
+						<li> 
+							<router-link to="/report/admitdhf" custom v-slot="{ navigate, href }">
+								<a @click="navigate" :href="href">
+									<i class="bx bx-arrow-to-right"></i> Admit DHF
+								</a>
+							</router-link> 
 						</li>
 					</ul>
 				</li>
@@ -241,7 +464,12 @@
 						<div class="menu-title">รายงานกายภาพ </div>
 					</a>
 					<ul>
-						<li> <a href="pychi.php"><i class="bx bx-arrow-to-right"></i>จำนวนผู้รับบริการ</a>
+						<li> 
+							<router-link to="/report/phypttype" custom v-slot="{ navigate, href }">
+								<a @click="navigate" :href="href">
+									<i class="bx bx-arrow-to-right"></i> จำนวนแยกรายสิทธิ
+								</a>
+							</router-link> 
 						</li>
 						<li> <a href="pro.php"><i class="bx bx-arrow-to-right"></i>รายการหัตถการ</a>
 						</li>
@@ -299,7 +527,12 @@
 					<ul>
 						<li> <a href="ptype.php"><i class="bx bx-arrow-to-right"></i>Webaccount</a>
 						</li>
-						<li> <a href="ptype2.php"><i class="bx bx-arrow-to-right"></i>แยกรายสิทธิ</a>
+						<li> 
+							<router-link to="/report/pttypesum" custom v-slot="{ navigate, href }">
+								<a @click="navigate" :href="href">
+									<i class="bx bx-arrow-to-right"></i> รายงานแยกตามสิทธิ
+								</a>
+							</router-link>
 						</li>
 						<li> <a href="ptype3.php"><i class="bx bx-arrow-to-right"></i>ยังไม่ปิดลูกหนี้</a>
 						</li>
