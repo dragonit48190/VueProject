@@ -1,5 +1,5 @@
 const express = require('express')
-const cors = require('cors')        //  เพิ่มส่วนนี้
+const cors = require('cors')        //  เพิ่มส่วน cors
 const app = express()
 const port = 5000
 
@@ -13,7 +13,53 @@ const readmitRoutes = require('./readmit');
 const readmitoldRoutes = require('./readmitold');
 const ipdreferRoutes = require('./ipdrefer');
 const copderRoutes = require('./copder');
-const severehiRoutes = require('./severehi');
+const headinjuryRoutes = require('./headinjury');
+const ipddeathRoutes = require('./ipddeath');
+const ncdpdxnullRoutes = require('./ncdpdxnull');
+const clinicdmRoutes = require('./clinicdm');
+const clinichtRoutes = require('./clinicht');
+const clinicckdRoutes = require('./clinicckd');
+const cliniccopdRoutes = require('./cliniccopd');
+const clinicasthmaRoutes = require('./clinicasthma');
+const newdmRoutes = require('./newdm');
+const newhtRoutes = require('./newht');
+const newckdRoutes = require('./newckd');
+const newcopdRoutes = require('./newcopd');
+const newasthmaRoutes = require('./newasthma');
+const influlotnullRoutes = require('./influlotnull');
+const dmscreeneyeRoutes = require('./dmscreeneye');
+const pttypesumRoutes = require('./pttypesum');
+const subtypeRoutes = require('./subtype');
+const dmscreenfootRoutes = require('./dmscreenfoot');
+const cretinineRoutes = require('./cretinine');
+const childenRoutes = require('./childen');
+const studentRoutes = require('./student');
+const teenagerRoutes = require('./teenager');
+const workageRoutes = require('./workage');
+const elderlyRoutes = require('./elderly');
+const screenpcuRoutes = require('./screenpcu');
+const screensRoutes = require('./screens');
+const rapidRoutes = require('./rapid');
+const rtpcrRoutes = require('./rtpcr');
+const denguefeverRoutes = require('./denguefever');
+const dengueRoutes = require('./dengue');
+const pdxnullerRoutes = require('./pdxnuller');
+const asthmaerRoutes = require('./asthmaer');
+const emergencyerRoutes = require('./emergencyer');
+const ettubeerRoutes = require('./ettubeer');
+const cprerRoutes = require('./cprer');
+const castopererRoutes = require('./castoperer');
+const defiberRoutes = require('./defiber');
+const nberRoutes = require('./nber');
+const admit2hourRoutes = require('./admit2hour');
+const admitipdRoutes = require('./admitipd');
+const admitdmRoutes = require('./admitdm');
+const readmitdmRoutes = require('./readmitdm');
+const admitdmhypoRoutes = require('./admitdmhypo');
+const admitdmhyperRoutes = require('./admitdmhyper');
+const admitdhfRoutes = require('./admitdhf');
+const phypttypeRoutes = require('./phypttype');
+const subphytypeRoutes = require('./subphytype');
 
 
 app.use(cors())                     //  เปิดใช้งาน CORS
@@ -27,7 +73,56 @@ app.use('/api', readmitRoutes);
 app.use('/api', readmitoldRoutes);
 app.use('/api', ipdreferRoutes);
 app.use('/api', copderRoutes);
-app.use('/api', severehiRoutes);
+app.use('/api', headinjuryRoutes);
+app.use('/api', ipddeathRoutes);
+app.use('/api', ncdpdxnullRoutes);
+app.use('/api', clinicdmRoutes);
+app.use('/api', clinichtRoutes);
+app.use('/api', clinicckdRoutes);
+app.use('/api', cliniccopdRoutes);
+app.use('/api', clinicasthmaRoutes);
+app.use('/api', newdmRoutes);
+app.use('/api', newhtRoutes);
+app.use('/api', newckdRoutes);
+app.use('/api', newcopdRoutes);
+app.use('/api', newasthmaRoutes);
+app.use('/api', influlotnullRoutes);
+app.use('/api', dmscreeneyeRoutes);
+app.use('/api', pttypesumRoutes);
+app.use('/api', subtypeRoutes);
+app.use('/api', dmscreenfootRoutes);
+app.use('/api', cretinineRoutes);
+app.use('/api', childenRoutes);
+app.use('/api', studentRoutes);
+app.use('/api', teenagerRoutes);
+app.use('/api', workageRoutes);
+app.use('/api', elderlyRoutes);
+app.use('/api', screenpcuRoutes);
+app.use('/api', screensRoutes);
+app.use('/api', rapidRoutes);
+app.use('/api', rtpcrRoutes);
+app.use('/api', denguefeverRoutes);
+app.use('/api', dengueRoutes);
+app.use('/api', pdxnullerRoutes);
+app.use('/api', asthmaerRoutes);
+app.use('/api', emergencyerRoutes);
+app.use('/api', ettubeerRoutes);
+app.use('/api', cprerRoutes);
+app.use('/api', castopererRoutes);
+app.use('/api', defiberRoutes);
+app.use('/api', nberRoutes);
+app.use('/api', admit2hourRoutes);
+app.use('/api', admitipdRoutes);
+app.use('/api', admitdmRoutes);
+app.use('/api', readmitdmRoutes);
+app.use('/api', admitdmhypoRoutes);
+app.use('/api', admitdmhyperRoutes);
+app.use('/api', admitdhfRoutes);
+app.use('/api', phypttypeRoutes);
+app.use('/api', subphytypeRoutes);
+
+
+
 
 // API ดึงข้อมูล SQL Visit HOSxP
 app.get('/api/authen', (req, res) => {
