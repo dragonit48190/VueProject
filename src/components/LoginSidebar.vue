@@ -44,17 +44,27 @@
             />
           </div>
 
-          <!-- Password Field -->
+          <!-- Password Field with Eye Icon -->
           <div class="form-group">
             <label class="form-label">Password</label>
-            <input
-              v-model="loginForm.password"
-              type="password"
-              class="form-control"
-              placeholder="ใส่ password"
-              required
-              :disabled="isLoading"
-            />
+            <div class="password-input-wrapper">
+              <input
+                v-model="loginForm.password"
+                :type="showPassword ? 'text' : 'password'"
+                class="form-control password-input"
+                placeholder="ใส่ password"
+                required
+                :disabled="isLoading"
+              />
+              <button
+                type="button"
+                class="password-toggle-btn"
+                @click="togglePasswordVisibility"
+                :disabled="isLoading"
+              >
+                <i :class="showPassword ? 'bx bx-hide' : 'bx bx-show'"></i>
+              </button>
+            </div>
           </div>
 
           <!-- Error Message -->
@@ -92,6 +102,7 @@
 <script>
 import axios from 'axios'
 import Swal from 'sweetalert2'
+import { authService } from '../services/authService.js' // 🔥 เพิ่ม import
 
 export default {
   name: 'LoginSidebar',
@@ -113,15 +124,22 @@ export default {
         password: ''
       },
       isLoading: false,
-      errorMessage: ''
+      errorMessage: '',
+      showPassword: false // 🔥 เพิ่ม state สำหรับแสดง/ซ่อน password
     }
   },
   methods: {
+    // 🔥 เพิ่ม method สำหรับ toggle password visibility
+    togglePasswordVisibility() {
+      this.showPassword = !this.showPassword
+    },
+
     closeSidebar() {
       // Clear form และ errors
       this.loginForm.loginname = ''
       this.loginForm.password = ''
       this.errorMessage = ''
+      this.showPassword = false // 🔥 รีเซ็ต password visibility
       this.$emit('close')
     },
 
@@ -143,11 +161,8 @@ export default {
         if (response.data.success) {
           console.log('Login successful:', response.data)
           
-          // Import authService แบบ dynamic
-          const { authService } = await import('../services/authService.js')
-          
-          // บันทึกข้อมูล user
-          authService.saveUserData(response.data.user)
+          // 🔥 ใช้ authService.saveUserData() จะเริ่ม session timeout อัตโนมัติ
+          await authService.saveUserData(response.data.user)
           
           // ส่ง event แจ้งการ login สำเร็จ
           window.dispatchEvent(new CustomEvent('auth-status-changed'))
@@ -160,9 +175,10 @@ export default {
             icon: 'success',
             title: 'เข้าสู่ระบบสำเร็จ!',
             html: `ยินดีต้อนรับ <strong>${response.data.user.name}</strong><br>
-                   <small class="text-muted">${response.data.user.groupname}</small>`,
+                   <small class="text-muted">${response.data.user.groupname}</small><br>
+                   <small class="text-success">🕐 Session timeout: 30 นาที</small>`,
             showConfirmButton: false,
-            timer: 2000,
+            timer: 3000,
             timerProgressBar: true,
             toast: true,
             position: 'top-end',
@@ -185,19 +201,32 @@ export default {
           errorMsg = error.response.data.message
         }
         
-        // SweetAlert ผิดพลาด
+        // 🔥 SweetAlert ผิดพลาด - ปรับปรุงข้อความ
         await Swal.fire({
           icon: 'error',
           title: 'เข้าสู่ระบบไม่สำเร็จ',
-          text: errorMsg,
+          html: `<strong>${errorMsg}</strong><br>
+                 <small class="text-muted">กรุณาตรวจสอบ username และ password</small>`,
           confirmButtonText: 'ลองใหม่',
           confirmButtonColor: '#dc3545',
           background: '#fff',
-          color: '#495057'
+          color: '#495057',
+          showClass: {
+            popup: 'animate__animated animate__shakeX'
+          }
         })
         
         // ล้าง password field
         this.loginForm.password = ''
+        this.showPassword = false // รีเซ็ต password visibility เมื่อ error
+        
+        // 🔥 Focus กลับไปที่ username field สำหรับใส่ใหม่
+        this.$nextTick(() => {
+          const usernameInput = this.$el.querySelector('input[type="text"]')
+          if (usernameInput) {
+            usernameInput.focus()
+          }
+        })
       } finally {
         this.isLoading = false
       }
@@ -298,6 +327,50 @@ export default {
 .form-control:disabled {
   background-color: #f8f9fa;
   opacity: 0.7;
+}
+
+/* 🔥 Password Input Wrapper Styles */
+.password-input-wrapper {
+  position: relative;
+  display: flex;
+  align-items: center;
+}
+
+.password-input {
+  padding-right: 45px !important; /* เพิ่มพื้นที่สำหรับปุ่มตา */
+}
+
+.password-toggle-btn {
+  position: absolute;
+  right: 12px;
+  background: none;
+  border: none;
+  color: #6c757d;
+  cursor: pointer;
+  padding: 0;
+  width: 24px;
+  height: 24px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 4px;
+  transition: color 0.2s, background-color 0.2s;
+  font-size: 16px;
+}
+
+.password-toggle-btn:hover:not(:disabled) {
+  color: #495057;
+  background-color: rgba(0, 0, 0, 0.05);
+}
+
+.password-toggle-btn:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+.password-toggle-btn:focus {
+  outline: none;
+  box-shadow: 0 0 0 2px rgba(102, 126, 234, 0.2);
 }
 
 .btn-login {

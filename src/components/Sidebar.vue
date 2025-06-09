@@ -336,6 +336,7 @@
   
 <script>
 import LoginSidebar from './LoginSidebar.vue'
+import Swal from 'sweetalert2'
 
 export default {
 	name: "AppSidebar",
@@ -430,7 +431,14 @@ export default {
 				
 				// ตรวจสอบสิทธิ์
 				if (!authService.canAccessReport(reportType)) {
-					alert(`ไม่มีสิทธิ์เข้าดู ${reportType}\nกลุ่มของคุณ: ${authService.getUserGroup()}`)
+					// ใช้ SweetAlert แทน alert
+					await Swal.fire({
+						title: 'ไม่มีสิทธิ์เข้าดู!',
+						html: `ไม่มีสิทธิ์เข้าดู <strong>${reportType}</strong><br>กลุ่มของคุณ: <strong>${authService.getUserGroup()}</strong>`,
+						icon: 'warning',
+						confirmButtonText: 'ตกลง',
+						confirmButtonColor: '#ffc107'
+					})
 					return
 				}
 				
@@ -440,7 +448,14 @@ export default {
 				
 			} catch (error) {
 				console.error('Error in navigation:', error)
-				alert('เกิดข้อผิดพลาดในการตรวจสอบสิทธิ์')
+				// ใช้ SweetAlert แทน alert
+				await Swal.fire({
+					title: 'เกิดข้อผิดพลาด!',
+					text: 'เกิดข้อผิดพลาดในการตรวจสอบสิทธิ์',
+					icon: 'error',
+					confirmButtonText: 'ตกลง',
+					confirmButtonColor: '#dc3545'
+				})
 			}
 		},
 		
@@ -459,10 +474,31 @@ export default {
 			this.closeLoginSidebar()
 		},
 		
-		// ออกจากระบบ
+		// ออกจากระบบ - ใช้ SweetAlert
 		async handleLogout() {
-			if (confirm('ต้องการออกจากระบบหรือไม่?')) {
+			const result = await Swal.fire({
+				title: 'ต้องการออกจากระบบ?',
+				text: 'คุณแน่ใจหรือไม่ที่จะออกจากระบบ?',
+				icon: 'question',
+				showCancelButton: true,
+				confirmButtonColor: '#28a745',
+				cancelButtonColor: '#dc3545',
+				confirmButtonText: 'ออกจากระบบ',
+				cancelButtonText: 'ยกเลิก'
+			})
+
+			if (result.isConfirmed) {
 				try {
+					// แสดง loading
+					Swal.fire({
+						title: 'กำลังออกจากระบบ...',
+						text: 'กรุณารอสักครู่',
+						allowOutsideClick: false,
+						didOpen: () => {
+							Swal.showLoading()
+						}
+					})
+
 					const { authService } = await import('../services/authService.js')
 					authService.logout()
 					this.checkAuthStatus()
@@ -471,9 +507,24 @@ export default {
 					window.dispatchEvent(new CustomEvent('auth-status-changed'))
 					
 					this.$router.push('/') // กลับไปหน้า dashboard
-					alert('ออกจากระบบเรียบร้อยแล้ว')
+					
+					// แสดงข้อความสำเร็จ
+					await Swal.fire({
+						title: 'ออกจากระบบแล้ว',
+						text: 'ขอบคุณที่ใช้บริการ',
+						icon: 'success',
+						timer: 2000,
+						showConfirmButton: false
+					})
 				} catch (error) {
 					console.error('Logout error:', error)
+					await Swal.fire({
+						title: 'เกิดข้อผิดพลาด!',
+						text: 'ไม่สามารถออกจากระบบได้',
+						icon: 'error',
+						confirmButtonText: 'ตกลง',
+						confirmButtonColor: '#dc3545'
+					})
 				}
 			}
 		}
