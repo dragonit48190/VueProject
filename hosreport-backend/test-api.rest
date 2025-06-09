@@ -1,23 +1,23 @@
-// เพิ่มเข้าไปหลัง route อื่น ๆ
-app.get('/api/stroke-refer', (req, res) => {
-  const { date1, date2 } = req.query
+### Health Check
+GET http://localhost:5000/api/health
 
-  const sql = `
-    SELECT 
-      p.hn, p.cid, CONCAT(p.pname, p.fname, ' ', p.lname) AS ptname,
-      TIMESTAMPDIFF(YEAR, p.birthday, CURDATE()) AS age,
-      r.refer_date, r.pdx AS icd, i.name AS icdname,
-      p.addrpart AS num, p.moopart AS moo, tt.name AS tum
-    FROM referout r
-    INNER JOIN patient p ON r.hn = p.hn
-    INNER JOIN thaiaddress tt 
-      ON p.chwpart = tt.chwpart AND p.amppart = tt.amppart AND p.tmbpart = tt.tmbpart AND tt.codetype = '3'
-    INNER JOIN icd101 i ON r.pdx = i.code
-    WHERE r.refer_date BETWEEN ? AND ? AND r.pdx = 'I64'
-  `
+### Login Test
+POST http://localhost:5000/api/auth/login
+Content-Type: application/json
 
-  db.query(sql, [date1, date2], (err, results) => {
-    if (err) return res.status(500).json({ error: 'Query Failed' })
-    res.json(results)
-  })
-})
+{
+  "loginnaam": "dragon",
+  "password": "0887312088"
+}
+
+### Login Test - ใส่ username/password ที่มีจริงในฐานข้อมูล
+POST http://localhost:5000/api/auth/login
+Content-Type: application/json
+
+{
+  "loginnaam": "dragon",
+  "password": "0887312088"
+}
+
+### Test Avatar API
+GET http://localhost:5000/api/auth/avatar/dragon

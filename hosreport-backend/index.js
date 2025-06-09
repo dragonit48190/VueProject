@@ -60,7 +60,24 @@ const admitdmhyperRoutes = require('./admitdmhyper');
 const admitdhfRoutes = require('./admitdhf');
 const phypttypeRoutes = require('./phypttype');
 const subphytypeRoutes = require('./subphytype');
-
+const physicpatientRoutes = require('./physicpatient');
+const physicovertimeRoutes = require('./physicovertime');
+const clinicdrugRoutes = require('./clinicdrug');
+const admitshizoRoutes = require('./admitshizo');
+const screendrinkRoutes = require('./screendrink');
+const pallaitivecaRoutes = require('./pallaitiveca');
+const pallaitiveckdRoutes = require('./pallaitiveckd');
+const pallaitivecopdRoutes = require('./pallaitivecopd');
+const pallaitiveheartRoutes = require('./pallaitiveheart');
+const telemedRoutes = require('./telemed');
+const financenullRoutes = require('./financenull');
+const subfinanceRoutes = require('./subfinance');
+const strokesmokingRoutes = require('./strokesmoking');
+const labcovidRoutes = require('./labcovid');
+const pltpatientRoutes = require('./pltpatient');
+const authRoutes = require('./auth');
+const shizoscreenRoutes = require('./shizoscreen');
+const clinicshizoRoutes = require('./clinicshizo');
 
 app.use(cors())                     //  เปิดใช้งาน CORS
 app.use(express.json())             //  อ่าน JSON body
@@ -120,9 +137,34 @@ app.use('/api', admitdmhyperRoutes);
 app.use('/api', admitdhfRoutes);
 app.use('/api', phypttypeRoutes);
 app.use('/api', subphytypeRoutes);
+app.use('/api', physicpatientRoutes);
+app.use('/api', physicovertimeRoutes);
+app.use('/api', clinicdrugRoutes);
+app.use('/api', admitshizoRoutes);
+app.use('/api', screendrinkRoutes);
+app.use('/api', pallaitivecaRoutes);
+app.use('/api', pallaitiveckdRoutes);
+app.use('/api', pallaitivecopdRoutes);
+app.use('/api', pallaitiveheartRoutes);
+app.use('/api', telemedRoutes);
+app.use('/api', financenullRoutes);
+app.use('/api', subfinanceRoutes);
+app.use('/api', strokesmokingRoutes);
+app.use('/api', labcovidRoutes);
+app.use('/api', pltpatientRoutes);
+app.use('/api/auth', authRoutes);
+app.use('/api', shizoscreenRoutes);
+app.use('/api', clinicshizoRoutes);
 
-
-
+// 🔥 เพิ่ม Health Check endpoint
+app.get('/api/health', (req, res) => {
+  res.json({
+    status: 'OK',
+    message: 'HOSReport Backend API is running',
+    timestamp: new Date().toISOString(),
+    port: port
+  })
+})
 
 // API ดึงข้อมูล SQL Visit HOSxP
 app.get('/api/authen', (req, res) => {
@@ -395,4 +437,6 @@ function isValidDate(dateString) {
 // เริ่มต้น Server
 app.listen(port, () => {
   console.log(` Server running at http://localhost:${port}`)
+  console.log(` Health check: http://localhost:${port}/api/health`)
+  console.log(` Auth endpoint: http://localhost:${port}/api/auth/login`)  // 🔥 เพิ่มบรรทัดนี้
 })
