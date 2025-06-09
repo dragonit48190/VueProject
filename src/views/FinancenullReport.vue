@@ -10,7 +10,7 @@
         <nav aria-label="breadcrumb">
           <ol class="breadcrumb mb-0 p-0">
             <li class="breadcrumb-item"><a href="/"><i class="bx bx-home-alt"></i></a></li>
-            <li class="breadcrumb-item active" aria-current="page">PHYSICAL PTTYPE</li>
+            <li class="breadcrumb-item active" aria-current="page">PTTYPE FINANCE</li>
           </ol>
         </nav>
       </div>
@@ -19,7 +19,7 @@
     
     <div class="row">
       <div class="col-12">
-        <h6 class="mb-0 text-uppercase">ค้นหารายการรักษาแยกตามสิทธิ PHYSICAL PTTYPE </h6>
+        <h6 class="mb-0 text-uppercase">ค้นหารายการรักษาแยกตามสิทธิ PTTYPE </h6>
         <hr />
         <div class="card border-top border-0 border-4 border-primary">
           <div class="card-body p-4">
@@ -63,7 +63,7 @@
               <div v-if="pttypeData.length > 0" class="mt-3">
                 <div class="alert alert-primary py-2">
                   <i class="bx bx-check-circle me-1"></i>
-                  พบข้อมูลสิทธิ PHYSICAL PTTYPE จำนวน <strong>{{ pttypeData.length.toLocaleString() }}</strong> รายการ
+                  พบข้อมูล PTTYPE จำนวน <strong>{{ pttypeData.length.toLocaleString() }}</strong> รายการ
                   ในช่วงวันที่ {{ formatDateRange() }}
                   <div class="mt-2">
                     <small class="text-muted">
@@ -86,7 +86,7 @@
           <div class="card-header d-flex justify-content-between align-items-center">
             <h6 class="mb-0 text-uppercase text-primary">
               <i class="bx bx-list-ul me-1"></i>
-              รายการรักษาแยกตามสิทธิ PTTYPE
+              รายการยังไม่ปิดลูกหนี้สิทธิการเงิน
               <span v-if="pttypeData.length > 0" class="badge bg-primary ms-2">{{ pttypeData.length }} รายการ</span>
             </h6>
           </div>
@@ -179,10 +179,10 @@
               กราฟแสดงข้อมูล PTTYPE
             </h6>
           </div>
-          <div class="card-body" >
+          <div class="card-body">
             <!-- ใช้ Chart Component -->
             <div v-if="pttypeData.length > 0">
-              <PhytypeChart :data="pttypeData" />
+              <FinancenullChart :data="pttypeData" />
             </div>
             
             <!-- เมื่อไม่มีข้อมูล -->
@@ -266,17 +266,17 @@
   import EasyDataTable from 'vue3-easy-data-table'
   import 'vue3-easy-data-table/dist/style.css'
   import API_ROUTES from '@/constants/apiRoutes'
-  import PhytypeChart from '@/components/PhytypeChart.vue'
+  import FinancenullChart from '@/components/FinancenullChart.vue'
   import * as XLSX from 'xlsx'
 
   
   dayjs.locale('th')
   
   export default {
-  name: 'PhypttypeReport',
+  name: 'FinancenullReport',
   components: {
     MainLayout,
-    PhytypeChart,
+    FinancenullChart,
     flatPickr: FlatPickr,
     EasyDataTable
   },
@@ -305,10 +305,7 @@
         { text: 'ชื่อ-สกุล', value: 'ptname' },
         { text: 'อายุ', value: 'age' },
         { text: 'วันที่รักษา', value: 'vstdate' },
-        { text: 'เวลา', value: 'TIME' },
-        { text: 'ผู้ให้บริการ', value: 'doctor' },
         { text: 'ICD', value: 'icd' },
-        { text: 'ICDNAME', value: 'icdname' },
         { text: 'สิทธิ', value: 'pttype_name' },
         { text: 'ค่ารักษา (บาท)', value: 'income_formatted' }
       ],
@@ -378,7 +375,7 @@ formattedDetailData() {
     try {
       this.loading = true
       
-      const res = await api.get(API_ROUTES.PHYPTTYPE, {
+      const res = await api.get(API_ROUTES.FINANCENULL, {
         params: { date1: d1, date2: d2 }
       })
       
@@ -439,7 +436,7 @@ formattedDetailData() {
       this.loadingDetail = true
       this.selectedPttype = { pttype, pttype_name }
       
-      const res = await api.get(API_ROUTES.SUBPHYTYPE, {
+      const res = await api.get(API_ROUTES.SUBFINANCE, {
         params: { 
           date1: d1, 
           date2: d2, 
@@ -487,14 +484,14 @@ exportDetailToExcel() {
     const pttypeName = this.selectedPttype?.pttype_name || 'ไม่ระบุสิทธิ'
     
     const excelData = [
-      [`รายงานรายละเอียดผู้ป่วยตามสิทธิ PTTYPE โรงพยาบาลโพนสวรรค์`],
+      [`รายงานยังไม่ปิดลูกหนี้สิทธิการเงิน โรงพยาบาลโพนสวรรค์`],
       [`สิทธิ: ${pttypeName}`],
       [`ช่วงวันที่: ${dateRange}`],
       [`วันที่ออกรายงาน: ${dayjs().format('DD/MM/YYYY HH:mm:ss')}`],
       [`จำนวนผู้ป่วยทั้งหมด: ${this.detailData.length} ราย`],
       [], // บรรทัดว่าง
       // Headers
-      ['ลำดับ', 'HN', 'CID', 'ชื่อ-สกุล', 'อายุ', 'วันที่รักษา', 'เวลา', 'ผู้ให้บริการ', 'ICD', 'ICDNAME', 'สิทธิ', 'ค่ารักษา (บาท)'],
+      ['ลำดับ', 'HN', 'CID', 'ชื่อ-สกุล', 'อายุ', 'วันที่รักษา', 'ICD', 'สิทธิ', 'ค่ารักษา'],
       // Data
       ...this.detailData.map((item, index) => [
         index + 1, 
@@ -502,11 +499,8 @@ exportDetailToExcel() {
         item.cid, 
         item.ptname, 
         item.age, 
-        item.vstdate,
-        item.TIME,
-        item.doctor, 
-        item.icd,
-        item.icdname, 
+        item.vstdate, 
+        item.icd, 
         item.pttype_name,
         parseFloat(item.income || 0).toFixed(2)
       ])
@@ -519,7 +513,7 @@ exportDetailToExcel() {
     
     // กำหนดชื่อไฟล์และดาวน์โหลด
     const pttypeCode = this.selectedPttype?.pttype || 'Unknown'
-    const fileName = `SUBPHYTYPE_Detail_${pttypeCode}_${dayjs(this.dateRaw1).format('YYYYMMDD')}_to_${dayjs(this.dateRaw2).format('YYYYMMDD')}.xlsx`
+    const fileName = `PTTYPE_FINANCE_${pttypeCode}_${dayjs(this.dateRaw1).format('YYYYMMDD')}_to_${dayjs(this.dateRaw2).format('YYYYMMDD')}.xlsx`
     XLSX.writeFile(wb, fileName)
     
     alert('ส่งออกข้อมูลรายละเอียดผู้ป่วยเป็น Excel สำเร็จ')

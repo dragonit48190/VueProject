@@ -283,6 +283,86 @@ const routes = [
     name: 'PhypttypeReport',
     component: () => import('@/views/PhypttypeReport.vue')
   },
+  {
+    path: '/report/physicpatient',
+    name: 'PhysicpatientReport',
+    component: () => import('@/views/PhysicpatientReport.vue')
+  },
+  {
+    path: '/report/physicovertime',
+    name: 'PhysicovertimeReport',
+    component: () => import('@/views/PhysicovertimeReport.vue')
+  },
+  {
+    path: '/report/clinicdrug',
+    name: 'ClinicdrugReport',
+    component: () => import('@/views/ClinicdrugReport.vue')
+  },
+  {
+    path: '/report/admitshizo',
+    name: 'AdmitshizoReport',
+    component: () => import('@/views/AdmitshizoReport.vue')
+  },
+  {
+    path: '/report/screendrink',
+    name: 'ScreendrinkReport',
+    component: () => import('@/views/ScreendrinkReport.vue')
+  },
+  {
+    path: '/report/pallaitiveca',
+    name: 'PallaitivecaReport',
+    component: () => import('@/views/PallaitivecaReport.vue')
+  },
+  {
+    path: '/report/pallaitiveckd',
+    name: 'PallaitiveckdReport',
+    component: () => import('@/views/PallaitiveckdReport.vue')
+  },
+  {
+    path: '/report/pallaitivecopd',
+    name: 'PallaitivecopdReport',
+    component: () => import('@/views/PallaitivecopdReport.vue')
+  },
+  {
+    path: '/report/pallaitiveheart',
+    name: 'PallaitiveheartReport',
+    component: () => import('@/views/PallaitiveheartReport.vue')
+  },
+  {
+    path: '/report/telemed',
+    name: 'TelemedReport',
+    component: () => import('@/views/TelemedReport.vue')
+  },
+  {
+    path: '/report/financenull',
+    name: 'FinancenullReport',
+    component: () => import('@/views/FinancenullReport.vue')
+  },
+  {
+    path: '/report/strokesmoking',
+    name: 'StrokesmokingReport',
+    component: () => import('@/views/StrokesmokingReport.vue')
+  },
+  {
+    path: '/report/labcovid',
+    name: 'LabcovidReport',
+    component: () => import('@/views/LabcovidReport.vue')
+  },
+  {
+    path: '/report/pltpatient',
+    name: 'PltpatientReport',
+    component: () => import('@/views/PltpatientReport.vue')
+  },
+  {
+    path: '/report/shizoscreen',
+    name: 'ShizoscreenReport',
+    component: () => import('@/views/ShizoscreenReport.vue')
+  },
+  {
+    path: '/report/clinicshizo',
+    name: 'ClinicshizoReport',
+    component: () => import('@/views/ClinicshizoReport.vue')
+  },
 ]
 
 const router = createRouter({

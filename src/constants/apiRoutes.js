@@ -59,8 +59,24 @@ export const API_ROUTES = {
     ADMITDMHYPER: '/admitdmhyper',
     ADMITDHF: '/admitdhf',
     PHYPTTYPE: '/phypttype',
-    SUBPHYTYPE: '/subphytype'
-
+    SUBPHYTYPE: '/subphytype',
+    PHYSICPATIENT: '/physicpatient',
+    PHYSICOVERTIME: '/physicovertime',
+    CLINICDRUG: '/clinicdrug',
+    ADMITSHIZO: '/admitshizo',
+    SCREENDRINK: '/screendrink',
+    PALLAITIVECA: '/pallaitiveca',
+    PALLAITIVECKD: '/pallaitiveckd',
+    PALLAITIVECOPD: '/pallaitivecopd',
+    PALLAITIVEHEART: '/pallaitiveheart',
+    TELEMED: '/telemed',
+    FINANCENULL: '/financenull',
+    SUBFINANCE: '/subfinance',
+    STROKESMOKING: '/strokesmoking',
+    LABCOVID: '/labcovid',
+    PLTPATIENT: '/pltpatient',
+    SHIZOSCREEN: '/shizoscreen',
+    CLINICSHIZO: '/clinicshizo',
 
   }
   

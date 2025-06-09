@@ -86,10 +86,10 @@ export default {
           gridLineDashStyle: 'Dash'
         },
         tooltip: {
-          backgroundColor: 'rgba(0,0,0,0.8)',
-          style: {
-            color: '#fff',
-            fontSize: '12px'
+          backgroundColor: '#ffffff',
+            style: {
+              color: '#000000',
+              fontSize: '12px'
           },
           borderRadius: 6,
           formatter: function() {
