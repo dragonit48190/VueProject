@@ -78,6 +78,10 @@ const pltpatientRoutes = require('./pltpatient');
 const authRoutes = require('./auth');
 const shizoscreenRoutes = require('./shizoscreen');
 const clinicshizoRoutes = require('./clinicshizo');
+const patientChartRoutes = require('./patientChart');
+const doctorChartRoutes = require('./doctorChart');
+const ipdPatientChartRoutes = require('./ipdPatientChart');
+const wardStatisticsRoutes = require('./wardStatistics');
 
 app.use(cors())                     //  เปิดใช้งาน CORS
 app.use(express.json())             //  อ่าน JSON body
@@ -155,6 +159,10 @@ app.use('/api', pltpatientRoutes);
 app.use('/api/auth', authRoutes);
 app.use('/api', shizoscreenRoutes);
 app.use('/api', clinicshizoRoutes);
+app.use('/api/patient-chart', patientChartRoutes);
+app.use('/api/doctor-chart', doctorChartRoutes);
+app.use('/api/ipd-patient-chart', ipdPatientChartRoutes);
+app.use('/api/ward-statistics', wardStatisticsRoutes);
 
 // 🔥 เพิ่ม Health Check endpoint
 app.get('/api/health', (req, res) => {
