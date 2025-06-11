@@ -69,14 +69,15 @@
               <!-- 🔥 แก้ไข user-box เล็กน้อย -->
               <div id="user-section" class="user-box dropdown" style="display: none;">
                   <a class="d-flex align-items-center nav-link dropdown-toggle dropdown-toggle-nocaret" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                      <img src="assets/images/avatars/avatar-d.png" class="user-img" alt="user avatar">
+                      <img src="assets/images/avatars/dragon.png" class="user-img" alt="user avatar">
                       <div class="user-info ps-3">
                           <p id="user-name" class="user-name mb-0">DragonIT</p>
                           <p id="user-position" class="designattion mb-0">Web Designer</p>
                       </div>
                   </a>
                   <ul class="dropdown-menu dropdown-menu-end">
-                      <li><a class="dropdown-item" href="javascript:;"><i class="bx bx-user"></i><span>Profile</span></a>
+                      <!-- 🔥 เปลี่ยนจาก onclick เป็น @click -->
+                      <li><a class="dropdown-item" href="javascript:;" @click="openProfileSidebar"><i class="bx bx-user"></i><span>Profile</span></a>
                       </li>
                       <li>
                           <div class="dropdown-divider mb-0"></div>
@@ -87,13 +88,29 @@
               </div>
           </nav>
       </div>
+
+      <!-- 🔥 เพิ่ม ProfileSidebar Component -->
+      <ProfileSidebar 
+        :isVisible="showProfileSidebar"
+        @close="closeProfileSidebar"
+      />
   </header>
   <!--end header -->
   </template>
   
   <script>
+  import ProfileSidebar from './ProfileSidebar.vue' // 🔥 Import ProfileSidebar
+
   export default {
     name: "AppHeader",
+    components: {
+      ProfileSidebar // 🔥 Register component
+    },
+    data() {
+      return {
+        showProfileSidebar: false // 🔥 State สำหรับ ProfileSidebar
+      }
+    },
     mounted() {
       // เช็คสถานะ login เมื่อโหลดหน้า
       this.checkAuthStatus()
@@ -105,6 +122,18 @@
       window.removeEventListener('auth-status-changed', this.checkAuthStatus)
     },
     methods: {
+      // 🔥 เปิด ProfileSidebar
+      openProfileSidebar() {
+        console.log('👤 Opening profile sidebar')
+        this.showProfileSidebar = true
+      },
+
+      // 🔥 ปิด ProfileSidebar
+      closeProfileSidebar() {
+        console.log('👤 Closing profile sidebar')
+        this.showProfileSidebar = false
+      },
+
       async checkAuthStatus() {
         try {
           // Dynamic import เพื่อไม่กระทบ bootstrap
@@ -127,6 +156,9 @@
             // แสดง login button, ซ่อน user dropdown
             loginSection.style.display = 'block'
             userSection.style.display = 'none'
+            
+            // 🔥 ปิด ProfileSidebar ถ้า user logout
+            this.showProfileSidebar = false
           }
         } catch (error) {
           console.error('Error checking auth status:', error)

@@ -11,13 +11,18 @@ export const authService = {
     return userData ? JSON.parse(userData) : null
   },
 
-  // 🔥 บันทึกข้อมูลหลัง login สำเร็จ + เริ่ม session timeout
+  // 🔥 บันทึกข้อมูลหลัง login สำเร็จ + เริ่ม session timeout + เก็บเวลา login
   async saveUserData(userData) {
     localStorage.setItem('user', JSON.stringify(userData))
     localStorage.setItem('isLoggedIn', 'true')
-    console.log('✅ User data saved:', userData)
     
-    // 🔥 เริ่มต้น session timeout
+    // 🔥 เก็บเวลาล็อกอินล่าสุด
+    localStorage.setItem('lastLoginTime', new Date().toISOString())
+    
+    console.log('✅ User data saved:', userData)
+    console.log('🕐 Login time recorded:', new Date().toLocaleString('th-TH'))
+    
+    // เริ่มต้น session timeout
     try {
       const { sessionTimeoutService } = await import('./sessionTimeoutService.js')
       sessionTimeoutService.start()
@@ -56,11 +61,11 @@ export const authService = {
     return hasAccess
   },
 
-  // 🔥 ออกจากระบบ + หยุด session timeout
+  // 🔥 ออกจากระบบ + หยุด session timeout + ลบเวลา login
   async logout() {
     console.log('🚪 Starting logout process...')
     
-    // 🔥 หยุด session timeout ก่อน
+    // หยุด session timeout ก่อน
     try {
       const { sessionTimeoutService } = await import('./sessionTimeoutService.js')
       sessionTimeoutService.stop()
@@ -73,11 +78,12 @@ export const authService = {
     localStorage.removeItem('user')
     localStorage.removeItem('isLoggedIn')
     localStorage.removeItem('userAvatar')
+    localStorage.removeItem('lastLoginTime') // 🔥 ลบเวลา login ด้วย
     
     console.log('🚪 User logged out successfully')
   },
 
-  // 🔥 เช็คและเริ่ม session timeout ถ้ามี user login อยู่แล้ว (สำหรับ page reload)
+  // เช็คและเริ่ม session timeout ถ้ามี user login อยู่แล้ว (สำหรับ page reload)
   async initializeSession() {
     if (this.isAuthenticated()) {
       const user = this.getUser()
@@ -111,7 +117,7 @@ export const authService = {
     return false
   },
 
-  // 🔥 ต่ออายุ session manually (สำหรับใช้ใน components)
+  // ต่ออายุ session manually (สำหรับใช้ใน components)
   async extendSession() {
     if (this.isAuthenticated()) {
       try {
@@ -127,17 +133,23 @@ export const authService = {
     return false
   },
 
-  // 🔥 ดึงสถานะ session timeout
+  // ดึงสถานะ session timeout
   async getSessionStatus() {
     if (!this.isAuthenticated()) return null
     
     try {
-      const { sessionTimeoutService } = await import('./sessionTimeoutService.js')
+      const { sessionTimeoutService } = await import('./services/sessionTimeoutService.js')
       return sessionTimeoutService.getStatus()
     } catch (error) {
       console.error('Error getting session status:', error)
       return null
     }
+  },
+
+  // 🔥 ดึงเวลาล็อกอินล่าสุด
+  getLastLoginTime() {
+    const lastLoginTime = localStorage.getItem('lastLoginTime')
+    return lastLoginTime ? new Date(lastLoginTime) : null
   },
 
   // ดึงชื่อผู้ใช้สำหรับแสดงใน Header
@@ -161,7 +173,7 @@ export const authService = {
   // ดึง username
   getUsername() {
     const user = this.getUser()
-    return user ? user.loginnaam : ''
+    return user ? user.loginname : ''
   },
 
   // ดึงรูปโปรไฟล์จาก API
@@ -178,7 +190,7 @@ export const authService = {
 
       console.log('📸 Fetching avatar from API for username:', user.loginname)
       // ดึงรูปจาก API
-      const response = await fetch(`http://localhost:5000/api/auth/avatar/${user.loginnaam}`)
+      const response = await fetch(`http://localhost:5000/api/auth/avatar/${user.loginname}`)
       console.log('📸 API Response status:', response.status)
       const data = await response.json()
       console.log('📸 API Response data:', data)
@@ -209,7 +221,7 @@ export const authService = {
           'Content-Type': 'application/json'
         },
         body: JSON.stringify({
-          loginnaam: user.loginnaam
+          loginname: user.loginname
         })
       })
 
