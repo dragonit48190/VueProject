@@ -21,6 +21,13 @@
 						<div class="menu-title">Dashboard</div>
 					</a>
 				</li>
+				<li>
+					<a href="#">
+						<div class="parent-icon"><i class='bx bx-mail-send'></i>
+						</div>
+						<div class="menu-title"> ขอรายงาน </div>
+					</a>
+				</li>
 				
 				<!-- 🔥 แก้ไขเมนู Login เล็กน้อย -->
 				<li v-if="!isLoggedIn">
@@ -198,52 +205,31 @@
 						<div class="menu-title">Pallaitive Care</div>
 					</a>
 					<ul>
-						<li>
-							<router-link to="/report/stroke" custom v-slot="{ navigate, href }">
-								<a @click="navigate" :href="href">
-									<i class="bx bx-arrow-to-right"></i>กลุ่ม Stroke I64
-								</a>
-							</router-link> 
-						</li>
-						<li> 
-							<router-link to="/report/pallaitiveca" custom v-slot="{ navigate, href }">
-								<a @click="navigate" :href="href">
-									<i class="bx bx-arrow-to-right"></i>กลุ่ม CA C00 - C96
-								</a>
-							</router-link>
-						</li>
-						<li>
-							<router-link to="/report/pallaitiveckd" custom v-slot="{ navigate, href }">
-								<a @click="navigate" :href="href">
-									<i class="bx bx-arrow-to-right"></i>กลุ่ม CKD N185
-								</a>
-							</router-link>
-						</li>
-						<li> 
-							<router-link to="/report/pallaitivecopd" custom v-slot="{ navigate, href }">
-								<a @click="navigate" :href="href">
-									<i class="bx bx-arrow-to-right"></i>กลุ่ม COPD J44
-								</a>
-							</router-link>
-						</li>
-						<li>
-							<router-link to="/report/pallaitiveheart" custom v-slot="{ navigate, href }">
-								<a @click="navigate" :href="href">
-									<i class="bx bx-arrow-to-right"></i>กลุ่ม Heart Failure 
-								</a>
-							</router-link>
-						</li>
-						<li>
-							<router-link to="/report/telemed" custom v-slot="{ navigate, href }">
-								<a @click="navigate" :href="href">
-									<i class="bx bx-arrow-to-right"></i>กลุ่ม Telemed
-								</a>
-							</router-link>
-						</li>
+						<li><a href="javascript:;" @click="navigateToReport('/report/stroke', 'Pallaitive Care')"><i class="bx bx-arrow-to-right"></i> กลุ่ม Stroke I64</a></li>
+						<li><a href="javascript:;" @click="navigateToReport('/report/pallaitiveca', 'Pallaitive Care')"><i class="bx bx-arrow-to-right"></i> กลุ่ม CA C00 - C96</a></li>
+						<li><a href="javascript:;" @click="navigateToReport('/report/pallaitiveckd', 'Pallaitive Care')"><i class="bx bx-arrow-to-right"></i> กลุ่ม CKD N185</a></li>
+						<li><a href="javascript:;" @click="navigateToReport('/report/pallaitivecopd', 'Pallaitive Care')"><i class="bx bx-arrow-to-right"></i> กลุ่ม COPD J44</a></li>
+						<li><a href="javascript:;" @click="navigateToReport('/report/pallaitiveheart', 'Pallaitive Care')"><i class="bx bx-arrow-to-right"></i> กลุ่ม Heart Failure </a></li>
+						<li><a href="javascript:;" @click="navigateToReport('/report/telemed', 'Pallaitive Care')"><i class="bx bx-arrow-to-right"></i> กลุ่ม Telemed </a></li>
 					</ul>
 				</li>
 
 				<li class="menu-label">HOSxP Custom Report </li>
+				<!-- รายงาน เภสัชกรรม - เหมือนเดิม -->
+				<li>
+					<a class="has-arrow" href="javascript:;">
+						<div class="parent-icon"><i class="bx bx-briefcase-alt"></i>
+						</div>
+						<div class="menu-title">รายงานเภสัชกรรม </div>
+					</a>
+					<ul>
+						<li><a href="javascript:;" @click="navigateToReport('/report/phamacydrugs', 'รายงานเภสัชกรรม')"><i class="bx bx-arrow-to-right"></i> จำนวนการใช้ยา </a></li>
+						<li><a href="javascript:;" @click="navigateToReport('/report/phamacyalert', 'รายงานเภสัชกรรม')"><i class="bx bx-arrow-to-right"></i> ทะเบียนแพ้ยา </a></li>
+						<li><a href="javascript:;" @click="navigateToReport('/report/phamacyinsulin', 'รายงานเภสัชกรรม')"><i class="bx bx-arrow-to-right"></i> Insulin MIXTARD </a></li>
+						<li><a href="javascript:;" @click="navigateToReport('/report/phamacywarfarin', 'รายงานเภสัชกรรม')"><i class="bx bx-arrow-to-right"></i> รับยา Warfarin </a></li>
+					</ul>
+				</li>
+
 				<!-- รายงาน การเงิน - เหมือนเดิม -->
 				<li>
 					<a class="has-arrow" href="javascript:;">
@@ -254,20 +240,8 @@
 					<ul>
 						<li> <a href="http://192.168.88.6/webaccount/" target="bank"><i class="bx bx-arrow-to-right"></i>Webaccount</a>
 						</li>
-						<li> 
-							<router-link to="/report/pttypesum" custom v-slot="{ navigate, href }">
-								<a @click="navigate" :href="href">
-									<i class="bx bx-arrow-to-right"></i> รายงานแยกตามสิทธิ
-								</a>
-							</router-link>
-						</li>
-						<li>
-							<router-link to="/report/financenull" custom v-slot="{ navigate, href }">
-								<a @click="navigate" :href="href">
-									<i class="bx bx-arrow-to-right"></i> ยังไม่ปิดลูกหนี้สิทธิ
-								</a>
-							</router-link>
-						</li>
+						<li><a href="javascript:;" @click="navigateToReport('/report/pttypesum', 'รายงาน การเงิน')"><i class="bx bx-arrow-to-right"></i> รายงานแยกตามสิทธิ </a></li>
+						<li><a href="javascript:;" @click="navigateToReport('/report/financenull', 'รายงาน การเงิน')"><i class="bx bx-arrow-to-right"></i> ยังไม่ปิดลูกหนี้สิทธิ </a></li>
 					</ul>
 				</li>
 				
@@ -276,23 +250,11 @@
 					<a class="has-arrow" href="javascript:;">
 						<div class="parent-icon"><i class='bx bx-map-pin' ></i>
 						</div>
-						<div class="menu-title">รายงาน OPD </div>
+						<div class="menu-title"> รายงาน OPD </div>
 					</a>
 					<ul>
-						<li> 
-							<router-link to="/report/strokesmoking" custom v-slot="{ navigate, href }">
-								<a @click="navigate" :href="href">
-									<i class="bx bx-arrow-to-right"></i> STROKE สูบบุหรี่ 
-								</a>
-							</router-link>
-						</li>
-						<li>
-							<router-link to="/report/labcovid" custom v-slot="{ navigate, href }">
-								<a @click="navigate" :href="href">
-									<i class="bx bx-arrow-to-right"></i> LAB COVID-19
-								</a>
-							</router-link>
-						</li>
+						<li><a href="javascript:;" @click="navigateToReport('/report/strokesmoking', 'รายงาน OPD')"><i class="bx bx-arrow-to-right"></i> STROKE สูบบุหรี่ </a></li>
+						<li><a href="javascript:;" @click="navigateToReport('/report/labcovid', 'รายงาน OPD')"><i class="bx bx-arrow-to-right"></i> LAB COVID-19</a></li>
 					</ul>
 				</li>
 
@@ -304,13 +266,7 @@
 						<div class="menu-title">แพทย์แผนไทย </div>
 					</a>
 					<ul>
-						<li>
-							<router-link to="/report/pltpatient" custom v-slot="{ navigate, href }">
-								<a @click="navigate" :href="href">
-									<i class="bx bx-arrow-to-right"></i> จำนวนผู้รับบริการ
-								</a>
-							</router-link> 
-						</li>
+						<li><a href="javascript:;" @click="navigateToReport('/report/pltpatient', 'แพทย์แผนไทย')"><i class="bx bx-arrow-to-right"></i> จำนวนผู้รับบริการ</a></li>
 					</ul>
 				</li>
 				<li>

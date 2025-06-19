@@ -51,7 +51,16 @@ export const authService = {
       'PCU': ['รายงาน PCU'],
       'ER': ['รายงาน ER'],
       'กายภาพบำบัด': ['รายงานกายภาพ'],
-      'งานการเงินและบัญชี': ['รายงาน การเงิน']
+      'งานการเงินและบัญชี': ['รายงาน การเงิน'],
+      'แพทย์แผนไทย': ['แพทย์แผนไทย'],
+      'OPD': ['HA','รายงาน OPD'],
+      'ห้องยา': ['รายงานเภสัชกรรม'],
+      'ผู้ป่วยใน': ['รายงาน IPD'],
+      'จิตเวชฯ': ['รายงานจิตเวชฯ'],
+      'PCU': ['รายงาน PCU','Pallaitive Care'],
+      'NCD': ['รายงาน NCDs','HA']
+
+
     }
 
     const allowedReports = accessMap[user.groupname] || []
@@ -188,12 +197,12 @@ export const authService = {
         return cachedAvatar
       }
 
-      console.log('📸 Fetching avatar from API for username:', user.loginname)
+      console.log('Fetching avatar from API for username:', user.loginname)
       // ดึงรูปจาก API
       const response = await fetch(`http://localhost:5000/api/auth/avatar/${user.loginname}`)
-      console.log('📸 API Response status:', response.status)
+      console.log('API Response status:', response.status)
       const data = await response.json()
-      console.log('📸 API Response data:', data)
+      console.log('API Response data:', data)
 
       if (data.success && data.hasImage) {
         // เก็บรูปใน localStorage สำหรับใช้ครั้งต่อไป
@@ -201,7 +210,7 @@ export const authService = {
         return data.image
       }
 
-      console.log('📸 No image found in API response')
+      console.log('No image found in API response')
       return null // ไม่มีรูป
     } catch (error) {
       console.error('Error fetching avatar:', error)

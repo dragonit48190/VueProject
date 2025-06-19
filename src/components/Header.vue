@@ -69,7 +69,7 @@
               <!-- 🔥 แก้ไข user-box เล็กน้อย -->
               <div id="user-section" class="user-box dropdown" style="display: none;">
                   <a class="d-flex align-items-center nav-link dropdown-toggle dropdown-toggle-nocaret" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                      <img src="assets/images/avatars/dragon.png" class="user-img" alt="user avatar">
+                      <img src="assets/images/avatars/avatar-d.png" class="user-img" alt="user avatar">
                       <div class="user-info ps-3">
                           <p id="user-name" class="user-name mb-0">DragonIT</p>
                           <p id="user-position" class="designattion mb-0">Web Designer</p>

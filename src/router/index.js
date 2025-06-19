@@ -363,6 +363,26 @@ const routes = [
     name: 'ClinicshizoReport',
     component: () => import('@/views/ClinicshizoReport.vue')
   },
+  {
+    path: '/report/phamacydrugs',
+    name: 'PhamacydrugsReport',
+    component: () => import('@/views/PhamacydrugsReport.vue')
+  },
+  {
+    path: '/report/phamacyalert',
+    name: 'PhamacyalertReport',
+    component: () => import('@/views/PhamacyalertReport.vue')
+  },
+  {
+    path: '/report/phamacywarfarin',
+    name: 'PhamacywarfarinReport',
+    component: () => import('@/views/PhamacywarfarinReport.vue')
+  },
+  {
+    path: '/report/phamacyinsulin',
+    name: 'PhamacyinsulinReport',
+    component: () => import('@/views/PhamacyinsulinReport.vue')
+  },
 ]
 
 const router = createRouter({

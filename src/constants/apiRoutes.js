@@ -77,6 +77,11 @@ export const API_ROUTES = {
     PLTPATIENT: '/pltpatient',
     SHIZOSCREEN: '/shizoscreen',
     CLINICSHIZO: '/clinicshizo',
+    PHAMACYDRUGS: '/phamacydrugs',
+    DRUGITEMS_SEARCH: '/drugitems/search',
+    PHAMACYALERT: '/phamacyalert',
+    PHAMACYWARFARIN: '/phamacywarfarin',
+    PHAMACYINSULIN: '/phamacyinsulin',
 
   }
   
