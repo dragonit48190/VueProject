@@ -82,6 +82,12 @@ const patientChartRoutes = require('./patientChart');
 const doctorChartRoutes = require('./doctorChart');
 const ipdPatientChartRoutes = require('./ipdPatientChart');
 const wardStatisticsRoutes = require('./wardStatistics');
+const phamacydrugsRoutes = require('./phamacydrugs');
+const phamacyalertRoutes = require('./phamacyalert');
+const phamacywarfarinRoutes = require('./phamacywarfarin');
+const phamacyinsulinRoutes = require('./phamacyinsulin');
+
+
 
 app.use(cors())                     //  เปิดใช้งาน CORS
 app.use(express.json())             //  อ่าน JSON body
@@ -163,6 +169,10 @@ app.use('/api/patient-chart', patientChartRoutes);
 app.use('/api/doctor-chart', doctorChartRoutes);
 app.use('/api/ipd-patient-chart', ipdPatientChartRoutes);
 app.use('/api/ward-statistics', wardStatisticsRoutes);
+app.use('/api', phamacydrugsRoutes);
+app.use('/api', phamacyalertRoutes);
+app.use('/api', phamacywarfarinRoutes);
+app.use('/api', phamacyinsulinRoutes);
 
 // 🔥 เพิ่ม Health Check endpoint
 app.get('/api/health', (req, res) => {

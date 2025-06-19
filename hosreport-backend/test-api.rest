@@ -21,3 +21,4 @@ Content-Type: application/json
 
 ### Test Avatar API
 GET http://localhost:5000/api/auth/avatar/dragon
+
